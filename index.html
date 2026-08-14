@@ -733,19 +733,37 @@
     <!-- SCRIPT FOR FORM SUBMISSION -->
     <script>
         function submitForm(event) {
-            event.preventDefault(); // Prevents actual page reload
-            
-            // Hide the form and show the success message
-            document.getElementById('registrationForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
+    event.preventDefault();
 
-            /* 
-            NOTE FOR BACKEND IMPLEMENTATION:
-            To actually save this data and send emails to myyogsutra@gmail.com, 
-            you can connect the form's "action" attribute to a service like Formspree.io, 
-            or link this to a Node.js/Firebase admin dashboard API endpoint using fetch().
-            */
-        }
+    const form = document.getElementById("registrationForm");
+    const fields = form.elements;
+
+    const data = new URLSearchParams();
+
+    data.append("name", fields[0].value);
+    data.append("mobile", fields[1].value);
+    data.append("email", fields[2].value);
+    data.append("city", fields[3].value);
+    data.append("age", fields[4].value);
+    data.append("gender", fields[5].value);
+    data.append("class", fields[6].value);
+    data.append("yoga", fields[7].value);
+    data.append("goal", fields[8].value);
+
+    fetch("https://script.google.com/macros/s/AKfycbyii7p2Mt5L2XiAVwI1W67bMzq4ZPzzHYd2sVEu_ieQA6ntwVZu4JpKsJTq5Mo1-PR5/exec", {
+        method: "POST",
+        body: data,
+        mode: "no-cors"
+    })
+    .then(() => {
+        form.style.display = "none";
+        document.getElementById("successMessage").style.display = "block";
+    })
+    .catch((error) => {
+        alert("Registration failed. Please try again.");
+        console.error(error);
+    });
+}
     </script>
 </body>
 </html>
