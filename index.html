@@ -731,8 +731,8 @@
     </a>
 
     <!-- SCRIPT FOR FORM SUBMISSION -->
-    <script>
-        function submitForm(event) {
+   <script>
+  function submitForm(event) {
     event.preventDefault();
 
     const form = document.getElementById("registrationForm");
@@ -748,22 +748,18 @@
     data.append("gender", fields[5].value);
     data.append("class", fields[6].value);
     data.append("yoga", fields[7].value);
-    data.append("goal", fields[8].value);
 
-    fetch("https://script.google.com/macros/s/AKfycbyii7p2Mt5L2XiAVwI1W67bMzq4ZPzzHYd2sVEu_ieQA6ntwVZu4JpKsJTq5Mo1-PR5/exec", {
-        method: "POST",
-        body: data,
-        mode: "no-cors"
+    fetch("https://script.google.com/macros/s/AKfycbwFZy85bpxsyMULqbgrfcWMNQFmeqkAIAymOPxlE68-eXt_HSrwNNR74pW1klXGMkF1/exec", {
+      method: "POST",
+      body: data,
+      mode: "no-cors"
     })
     .then(() => {
-        form.style.display = "none";
-        document.getElementById("successMessage").style.display = "block";
-    })
-    .catch((error) => {
-        alert("Registration failed. Please try again.");
-        console.error(error);
+      form.style.display = "none";
+      document.getElementById("successMessage").style.display = "block";
     });
-}
-    </script>
+  }
+</script>
+    
 </body>
 </html>
